@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Search, ShoppingBag, Heart, User } from "lucide-react";
 import { categories } from "@/lib/data/categories";
 import { useCartSummary, useWishlistStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { withBasePath } from "@/lib/base-path";
 
 function CountBadge({ value }: { value: number }) {
   if (value <= 0) return null;
@@ -56,13 +56,12 @@ export function SiteHeader() {
         {/* Mobile compact bar */}
         <div className="flex items-center justify-between gap-3 px-3.5 py-2.5 md:hidden">
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/brand/shoezo-logo.png"
+            <img
+              src={withBasePath("/images/brand/shoezo-logo.png")}
               alt="Shoezo"
               width={32}
               height={32}
               className="rounded-full"
-              priority
             />
             <span className="text-base font-extrabold tracking-tight text-foreground">
               SHOEZO
@@ -93,13 +92,12 @@ export function SiteHeader() {
             href="/"
             className="flex shrink-0 items-center gap-2.5 transition-transform hover:scale-[1.02]"
           >
-            <Image
-              src="/images/brand/shoezo-logo.png"
+            <img
+              src={withBasePath("/images/brand/shoezo-logo.png")}
               alt="Shoezo"
               width={38}
               height={38}
               className="rounded-full"
-              priority
             />
             <div className="leading-tight">
               <p className="text-lg font-extrabold tracking-tight text-foreground">

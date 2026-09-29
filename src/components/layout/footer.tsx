@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Truck, ShieldCheck, RotateCcw, Headphones } from "lucide-react";
 import { categories } from "@/lib/data/categories";
 import { InstagramIcon } from "@/components/icons";
+import { withBasePath } from "@/lib/base-path";
 
 const trustBadges = [
   { icon: Truck, label: "Free shipping", sub: "On orders above ₹1,999" },
@@ -31,8 +31,8 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 border-t border-border px-5 py-10 md:grid-cols-5 md:px-6">
         <div className="col-span-2">
           <div className="flex items-center gap-2">
-            <Image
-              src="/images/brand/shoezo-logo.png"
+            <img
+              src={withBasePath("/images/brand/shoezo-logo.png")}
               alt="Shoezo"
               width={36}
               height={36}

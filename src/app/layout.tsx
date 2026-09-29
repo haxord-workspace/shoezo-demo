@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { BottomNav } from "@/components/layout/bottom-nav";
 import { SiteFooter } from "@/components/layout/footer";
+import { StoreHydration } from "@/components/store-hydration";
 
 const radioCanada = Radio_Canada({
   variable: "--font-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${radioCanada.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <StoreHydration />
         <SiteHeader />
         <main className="flex-1 pb-14 md:pb-0">{children}</main>
         <SiteFooter />

@@ -55,7 +55,10 @@ export const useCartStore = create<CartState>()(
         })),
       clear: () => set({ items: [] }),
     }),
-    { name: "shoezo-cart" },
+    // Rehydrated manually post-mount (see <StoreHydration/>) so the first
+    // client render matches the server's empty-state HTML instead of racing
+    // ahead of it — avoids a hydration mismatch on every persisted read.
+    { name: "shoezo-cart", skipHydration: true },
   ),
 );
 
@@ -87,6 +90,6 @@ export const useWishlistStore = create<WishlistState>()(
         })),
       has: (productId) => get().productIds.includes(productId),
     }),
-    { name: "shoezo-wishlist" },
+    { name: "shoezo-wishlist", skipHydration: true },
   ),
 );
