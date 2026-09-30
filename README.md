@@ -34,3 +34,10 @@ changes needed. See `public/images/README.md` and
 
 Pushes to `main` automatically build and deploy to GitHub Pages via
 `.github/workflows/deploy.yml` (static export, base path `/shoezo-demo`).
+
+Cloudflare Pages deploys from `.github/workflows/deploy-cloudflare.yml`. Create
+a Cloudflare Pages project named `shoezo`, then add the GitHub repository
+secrets `CLOUDFLARE_API_TOKEN` (with Cloudflare Pages edit permission) and
+`CLOUDFLARE_ACCOUNT_ID`. Pushes to `main` and manual workflow runs build the
+site as a static export at the domain root and deploy it to that project. The
+Cloudflare workflow and GitHub Pages workflow can run independently.
