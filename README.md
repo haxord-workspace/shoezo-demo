@@ -35,9 +35,14 @@ changes needed. See `public/images/README.md` and
 Pushes to `main` automatically build and deploy to GitHub Pages via
 `.github/workflows/deploy.yml` (static export, base path `/shoezo-demo`).
 
-Cloudflare Pages deploys from `.github/workflows/deploy-cloudflare.yml`. Create
-a Cloudflare Pages project named `shoezo`, then add the GitHub repository
-secrets `CLOUDFLARE_API_TOKEN` (with Cloudflare Pages edit permission) and
-`CLOUDFLARE_ACCOUNT_ID`. Pushes to `main` and manual workflow runs build the
-site as a static export at the domain root and deploy it to that project. The
-Cloudflare workflow and GitHub Pages workflow can run independently.
+Cloudflare Workers deploys this Next.js app through OpenNext. In the Cloudflare
+Workers build settings, use `npm run cf:build` as the build command and
+`npm run cf:deploy` as the deploy command. Set the build environment to Node.js
+22 or newer (Node.js 24 is used by the current Cloudflare build image). The
+committed `wrangler.jsonc` keeps the Worker name and `WORKER_SELF_REFERENCE`
+service binding aligned as `shoezo-demo`, avoiding Cloudflare's generated name
+mismatch. The incremental cache uses the existing `shoezo-opennext-cache` R2
+bucket.
+
+To deploy locally, authenticate Wrangler with `npx wrangler login` and run
+`npm run deploy`. Use `npm run preview` to test the Worker runtime locally.
